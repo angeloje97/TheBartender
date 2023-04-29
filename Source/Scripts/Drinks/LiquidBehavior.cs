@@ -18,7 +18,7 @@ namespace TheBartender
         [SerializeField] MeshRenderer meshRenderer;
         void Start()
         {
-        
+            Debug.Log(GetComponentInParent<LiquidBehavior>());
         }
 
         // Update is called once per frame
@@ -45,14 +45,20 @@ namespace TheBartender
         private void OnTriggerEnter(Collider other)
         {
             var drinkBehavior = other.GetComponent<DrinkBehavior>();
-            if (drinkBehavior == source) return;
-            if (drinkBehavior == null)
+            if (drinkBehavior) return;
+            var liquidCatcher = other.GetComponent<LiquidCatcher>();
+
+            if (liquidCatcher)
             {
-                OnDestroySelf?.Invoke();
-                Destroy(gameObject);
-                return;
+                var parentBehavior = liquidCatcher.GetComponentInParent<DrinkBehavior>();
+                if (parentBehavior == source) return;
+                var success = parentBehavior.AddMixture(currentMixture);
+                Debug.Log($"Added mixture to {parentBehavior}: {success}");
             }
-            drinkBehavior.AddMixture(currentMixture);
+            
+            OnDestroySelf?.Invoke();
+            Destroy(gameObject);
+            return;
         }
     }
 

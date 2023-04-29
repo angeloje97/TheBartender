@@ -198,6 +198,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 35407659}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &44143480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 44143481}
+  m_Layer: 0
+  m_Name: Pour Transform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &44143481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44143480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.1565, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1401220517}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &68533373
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8020,7 +8051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6cc75a01359034fb22174c1c0c208a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAmount: 0
+  drinkBehavior: {fileID: 0}
   maxHeight: 0
   minHeight: 0
   liquidTransform: {fileID: 0}
@@ -13221,7 +13252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da6cc75a01359034fb22174c1c0c208a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentAmount: 0
+  drinkBehavior: {fileID: 0}
   maxHeight: 0.060964998
   minHeight: 0.005
   liquidTransform: {fileID: 1530673836}
@@ -13343,6 +13374,47 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+--- !u!114 &1401220529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401220518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c66fcc679c287b43a925920caa1bcfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixtures: []
+  amount: 0
+  maxAmount: 5
+  amountPouredPerSecond: 2.5
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
+  tiltDetection: {fileID: 1401220533}
+  pourTransform: {fileID: 44143481}
+  spread: 0.08
+  acceptsLiquid: 1
+  liquidBehavior: {fileID: 860371993437999928, guid: f39aeb304e7970c4c93eefdafce466ee,
+    type: 3}
+--- !u!114 &1401220533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401220518}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec04f64b5fd7ddc4f845877bb2b59424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tiltState: 0
+  tiltThreshHold: 45
+  currentRotation: {x: 0, y: 0, z: 0}
+  OnTilted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1413333884
 GameObject:
   m_ObjectHideFlags: 0
@@ -13354,6 +13426,8 @@ GameObject:
   - component: {fileID: 1413333885}
   - component: {fileID: 1413333888}
   - component: {fileID: 1413333887}
+  - component: {fileID: 1413333889}
+  - component: {fileID: 1413333890}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -13426,6 +13500,32 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413333884}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!136 &1413333889
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413333884}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.50000006
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0.00000005960464, y: 0, z: -0.00000008940696}
+--- !u!114 &1413333890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413333884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35e25f053c04cc94ab29ab1af169d31a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1413360586
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14508,6 +14608,7 @@ MonoBehaviour:
   amount: 20
   maxAmount: 20
   amountPouredPerSecond: 1
+  currentColor: {r: 0, g: 0, b: 0, a: 0}
   tiltDetection: {fileID: 1473811981}
   pourTransform: {fileID: 1155022480}
   spread: 0.035
@@ -15011,7 +15112,7 @@ Transform:
   m_GameObject: {fileID: 1530673835}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.0042, y: 0, z: -0.0081}
-  m_LocalScale: {x: 0.09, y: 0.060964998, z: 0.09}
+  m_LocalScale: {x: 0.09, y: 0.005, z: 0.09}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1413333885}

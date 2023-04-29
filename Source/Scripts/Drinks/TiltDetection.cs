@@ -16,6 +16,7 @@ namespace TheBartender
     {
         public TiltState tiltState;
         public float tiltThreshHold;
+        public float tiltMaximum;
         [SerializeField]
         public Vector3 currentRotation;
 

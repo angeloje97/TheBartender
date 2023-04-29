@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 
 namespace TheBartender
@@ -9,8 +10,6 @@ namespace TheBartender
     public class DrinkContainer : MonoBehaviour
     {
         public DrinkBehavior drinkBehavior;
-
-        public float currentAmount;
 
         public float maxHeight;
         public float minHeight;
@@ -62,24 +61,23 @@ namespace TheBartender
 
         void HandleAddMixture(DrinkBehavior behavior)
         {
-
+            UpdateLiquid();
         }
 
         void HandleRemoveMixture(DrinkBehavior behavior)
         {
+            UpdateLiquid();
 
         }
 
         void UpdateLiquid()
         {
-            //currentAmount = TotalAmount();
-
-            //liquidRenderer.material.color = FinalColor(currentAmount);
-            //var scale = liquidTransform.localScale;
-            //var lerpValue = currentAmount / maxAmount;
-            //Debug.Log(lerpValue);
-            //var value = Mathf.Lerp(minHeight, maxHeight, lerpValue);
-            //liquidTransform.localScale = new Vector3(scale.x, value, scale.z);
+            var behavior = drinkBehavior;
+            liquidRenderer.material.color = behavior.currentColor;
+            var fillPercent = behavior.amount / behavior.maxAmount;
+            var scale = liquidTransform.localScale;
+            var targetHeight = Mathf.Lerp(minHeight, maxHeight, fillPercent);
+            liquidTransform.localScale = new Vector3(scale.x, targetHeight, scale.z);
         }
     }
 }

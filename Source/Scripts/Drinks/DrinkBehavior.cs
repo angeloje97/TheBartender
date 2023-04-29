@@ -62,6 +62,8 @@ namespace TheBartender
         {
             if (pourTransform == null) return;
             Gizmos.DrawWireCube(pourTransform.position, Vector3.one * spread);
+            float size = spread > .05f ? .05f : spread / 2f;
+            Gizmos.DrawWireSphere(pourTransform.position, size);
         }
 
         
@@ -112,11 +114,14 @@ namespace TheBartender
             return color;
         }
 
-        public void AddMixture(List<Mixture> incomingMixture)
+        public bool AddMixture(List<Mixture> incomingMixture)
         {
+            if (!acceptsLiquid) return false;
             mixtures ??= new();
 
-            foreach(var incoming in incomingMixture)
+            var addedMixtures = false;
+
+            foreach (var incoming in incomingMixture)
             {
                 var drink = incoming.drink;
                 var amount = incoming.amount;
@@ -125,26 +130,42 @@ namespace TheBartender
 
                 if (amount + totalAmount > maxAmount)
                 {
-                    amount = totalAmount + amount - maxAmount;
+                    amount = maxAmount - totalAmount;
                 }
+
+                Debug.Log($"4393: Total Amount : {amount}");
+
+                if (amount <= 0) continue;
+
+                var added = false;
 
                 foreach (var mixture in mixtures)
                 {
                     if (mixture.drink.Equals(drink))
                     {
                         mixture.amount = Mathf.Clamp(mixture.amount + amount, 0f, maxAmount);
-                        return;
+                        added = true;
+                        addedMixtures = true;
+                        break;
                     }
                 }
 
-                mixtures.Add(new()
+                if (!added)
                 {
-                    drink = drink,
-                    amount = Mathf.Clamp(amount, 0f, maxAmount)
-                });
+                    mixtures.Add(new()
+                    {
+                        drink = drink,
+                        amount = Mathf.Clamp(amount, 0f, maxAmount)
+                    });
+
+                    addedMixtures = true;
+
+                }
             }
             TotalAmount();
+            FinalColor(amount);
             OnAddMixture?.Invoke(this);
+            return addedMixtures;
         }
 
         public bool ReleaseMixture(float amountPerInterval)
