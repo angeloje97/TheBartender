@@ -86,6 +86,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6556677374334014794, guid: 133c48d7a62b9d5499aa9695e769a871,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6712565597515959846, guid: 133c48d7a62b9d5499aa9695e769a871,
         type: 3}
       propertyPath: m_RootOrder
@@ -156,6 +161,12 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9028470185645315470, guid: 133c48d7a62b9d5499aa9695e769a871,
+        type: 3}
+      propertyPath: mixtures.Array.data[0].drink
+      value: 
+      objectReference: {fileID: 11400000, guid: fa28e63f5d74c8346823d688a17acc3f,
+        type: 2}
     - target: {fileID: 9028470185964125454, guid: 133c48d7a62b9d5499aa9695e769a871,
         type: 3}
       propertyPath: m_LocalPosition.y

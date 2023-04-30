@@ -21,6 +21,8 @@ namespace TheBartender
 
         public bool copyMaxHeight;
         public bool copyMinHeight;
+        public bool setMin;
+        public bool setMax;
 
         public float currentValue;
         bool updatingValue;
@@ -65,6 +67,19 @@ namespace TheBartender
                 copyMinHeight = false;
                 minHeight = liquidTransform.localScale.y;
             }
+            var scale = liquidTransform.localScale;
+
+            if (setMin)
+            {
+                setMin = false;
+                liquidTransform.localScale = new Vector3(scale.x, minHeight, scale.z);
+            }
+
+            if (setMax)
+            {
+                setMax = false;
+                liquidTransform.localScale = new Vector3(scale.x, maxHeight, scale.z);
+            }
         }
 
         void HandleAddMixture(DrinkBehavior behavior)
@@ -88,15 +103,28 @@ namespace TheBartender
             {
                 lerpValue += .0625f;
             }
-            while(currentValue != behavior.amount)
+
+
+            do
             {
                 currentValue = Mathf.Lerp(currentValue, behavior.amount, lerpValue);
                 material.color = Color.Lerp(material.color, behavior.currentColor, lerpValue);
+                
 
                 var fillPercent = currentValue / behavior.maxAmount;
                 var scale = liquidTransform.localScale;
                 var targetHeight = Mathf.Lerp(minHeight, maxHeight, fillPercent);
-                liquidTransform.localScale = new Vector3(scale.x, targetHeight, scale.z);
+
+                if(behavior.amount == 0)
+                {
+                    liquidTransform.localScale = new Vector3(scale.x, 0.005f, scale.z);
+                }
+                else
+                {
+                    liquidTransform.localScale = new Vector3(scale.x, targetHeight, scale.z);
+
+                }
+
 
                 if (Mathf.Abs(behavior.amount - currentValue) < .0001)
                 {
@@ -106,7 +134,7 @@ namespace TheBartender
 
                 if (!Application.isPlaying) return;
                 await Task.Yield();
-            }
+            } while (currentValue != behavior.amount);
             updatingValue = false;
             
         }

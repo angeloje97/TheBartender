@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6556677374334014794, guid: 133c48d7a62b9d5499aa9695e769a871,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6712565597515959846, guid: 133c48d7a62b9d5499aa9695e769a871,
         type: 3}
       propertyPath: m_RootOrder
@@ -77,10 +82,21 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9028470185645315470, guid: 133c48d7a62b9d5499aa9695e769a871,
+        type: 3}
+      propertyPath: mixtures.Array.data[0].drink
+      value: 
+      objectReference: {fileID: 11400000, guid: 2fb875fd5f671de4295d302df8f7e5e6,
+        type: 2}
     - target: {fileID: 9028470185964125454, guid: 133c48d7a62b9d5499aa9695e769a871,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.358
+      objectReference: {fileID: 0}
+    - target: {fileID: 9028470186314662017, guid: 133c48d7a62b9d5499aa9695e769a871,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.136
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 133c48d7a62b9d5499aa9695e769a871, type: 3}

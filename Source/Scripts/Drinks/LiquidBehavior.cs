@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 namespace TheBartender
 {
@@ -16,6 +18,8 @@ namespace TheBartender
         public Action OnDestroySelf;
 
         [SerializeField] MeshRenderer meshRenderer;
+
+        bool destroyed;
         void Start()
         {
             Debug.Log(GetComponentInParent<LiquidBehavior>());
@@ -44,21 +48,20 @@ namespace TheBartender
 
         private void OnTriggerEnter(Collider other)
         {
-            var drinkBehavior = other.GetComponent<DrinkBehavior>();
-            if (drinkBehavior) return;
-            var liquidCatcher = other.GetComponent<LiquidCatcher>();
+            if (other.GetComponent<XRDirectInteractor>()) return;
+            if (other.GetComponentInParent<DrinkBehavior>()) return;
 
-            if (liquidCatcher)
-            {
-                var parentBehavior = liquidCatcher.GetComponentInParent<DrinkBehavior>();
-                if (parentBehavior == source) return;
-                var success = parentBehavior.AddMixture(currentMixture);
-                Debug.Log($"Added mixture to {parentBehavior}: {success}");
-            }
-            
+            DestroySelf($"{other.gameObject}");
+            return;
+        }
+
+        public async void DestroySelf(string reason)
+        {
+            if (destroyed) return;
+            await Task.Yield();
+            Debug.Log($"5393 Destroyed from {reason}");
             OnDestroySelf?.Invoke();
             Destroy(gameObject);
-            return;
         }
     }
 

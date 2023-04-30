@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d096b977ff61aa47ae76fc63d1c7010, type: 3}
-  m_Name: Red Drink
+  m_Name: Beer
   m_EditorClassIdentifier: 
-  name: Red Drink
-  liquidColor: {r: 1, g: 0.02458538, b: 0, a: 0.5019608}
+  name: Beer
+  liquidColor: {r: 1, g: 0.90713394, b: 0, a: 0.5019608}
   id: 1
   pourParticles: {fileID: 6987133548571522133, guid: f39aeb304e7970c4c93eefdafce466ee,
     type: 3}

@@ -17,6 +17,8 @@ namespace TheBartender
 
         //Action<UIManager> OnToggleToolTips;
 
+        public Transform worldCanvas;
+
         Dictionary<UIManagerEvent, Action<UIManager>> actionDictionary;
 
         private void Awake()
@@ -32,7 +34,8 @@ namespace TheBartender
 
         public Action AddListener<T>(UIManagerEvent eventType, Action<UIManager> action, T caller) where T: MonoBehaviour
         {
-            if (actionDictionary.ContainsKey(eventType))
+            actionDictionary ??= new();
+            if (!actionDictionary.ContainsKey(eventType))
             {
                 actionDictionary.Add(eventType, null);
             }

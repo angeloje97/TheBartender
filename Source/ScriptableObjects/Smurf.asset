@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8d096b977ff61aa47ae76fc63d1c7010, type: 3}
-  m_Name: Blue Drink
+  m_Name: Smurf
   m_EditorClassIdentifier: 
-  name: Red Drink
-  liquidColor: {r: 0, g: 0.04503846, b: 1, a: 0.9019608}
-  id: 2
+  name: Smurf
+  liquidColor: {r: 0, g: 0.6436324, b: 1, a: 0.9019608}
+  id: 8
   pourParticles: {fileID: 6987133548571522133, guid: f39aeb304e7970c4c93eefdafce466ee,
     type: 3}
   particlesPerPour: 1

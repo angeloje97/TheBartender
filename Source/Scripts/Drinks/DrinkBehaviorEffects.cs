@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Architome;
 
 namespace TheBartender
 {
     public class DrinkBehaviorEffects : MonoBehaviour
     {
         public DrinkBehavior behavior;
-        public AudioClip outputSound;
-        public AudioSource outputSource;
-        public AudioSource inputSource;
+        public AudioManager audioManager;
+        public AudioClip outSound;
+        public AudioClip inSound;
         void Start()
         {
             GetDependencies();
@@ -18,8 +19,9 @@ namespace TheBartender
         void GetDependencies()
         {
             behavior = GetComponent<DrinkBehavior>();
+            audioManager = GetComponent<AudioManager>();
 
-            if (behavior)
+            if (behavior && audioManager)
             {
                 behavior.OnRemoveMixture += HandleOutput;
                 behavior.OnAddMixture += HandleInput;
@@ -28,15 +30,13 @@ namespace TheBartender
 
         void HandleOutput(DrinkBehavior behavior)
         {
-            if (outputSound == null) return;
-            if (outputSource == null) return;
-            var pitch = Random.Range(.95f, 1.05f);
-
+            if (outSound == null) return;
+            Debug.Log($"445 Playing sound for {gameObject}");
+            audioManager.PlayAudioClip(outSound);
         }
 
         void HandleInput(DrinkBehavior behavior)
         {
-
         }
     }
 }
