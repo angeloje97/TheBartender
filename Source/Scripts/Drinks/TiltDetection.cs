@@ -16,7 +16,9 @@ namespace TheBartender
     {
         public TiltState tiltState;
         public float tiltThreshHold;
-        public float tiltMaximum;
+
+        public float tiltValue;
+        public float tiltLerpValue;
         [SerializeField]
         public Vector3 currentRotation;
 
@@ -27,6 +29,10 @@ namespace TheBartender
         void Start()
         {
         
+        }
+
+        private void OnValidate()
+        {
         }
 
         // Update is called once per frame
@@ -49,19 +55,15 @@ namespace TheBartender
         {
             currentRotation = transform.eulerAngles;
 
-            if(currentRotation.x > tiltThreshHold && currentRotation.x < 360 - tiltThreshHold)
-            {
-                tiltState = TiltState.Tilted;
-                return;
-            }
 
-            if(currentRotation.z > tiltThreshHold && currentRotation.z < 360 - tiltThreshHold)
-            {
-                tiltState = TiltState.Tilted;
-                return;
-            }
+            var xValue = currentRotation.x > 180f ? 360f - currentRotation.x : currentRotation.x;
+            var zValue = currentRotation.z > 180f ? 360f - currentRotation.z : currentRotation.z;
 
-            tiltState = TiltState.Upright;
+            tiltValue = Mathf.Max(xValue, zValue);
+
+            tiltLerpValue = Mathf.InverseLerp(tiltThreshHold, 150, tiltValue);
+
+            tiltState = tiltValue > tiltThreshHold ? TiltState.Tilted : TiltState.Upright;
         }
     }
 }

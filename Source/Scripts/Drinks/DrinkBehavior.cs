@@ -33,8 +33,12 @@ namespace TheBartender
 
         public Action OnUpdate;
 
+        public bool pouring;
+
         public Action<DrinkBehavior> OnAddMixture { get; set; }
         public Action<DrinkBehavior> OnRemoveMixture { get; set; }
+
+        public float waitTime;
 
         private void Start()
         {
@@ -44,6 +48,7 @@ namespace TheBartender
         public virtual void GetDependencies()
         {
             TotalAmount();
+            FinalColor(amount);
             tiltDetection = GetComponent<TiltDetection>();
             
 
@@ -71,16 +76,50 @@ namespace TheBartender
         protected virtual async void HandleTiltStateChange(TiltState state)
         {
             if (state != TiltState.Tilted) return;
-            var pourInterval = .125f;
+            var pourInterval = .0625f;
             var amountPerInterval = amountPouredPerSecond * pourInterval;
 
-            while(tiltDetection.tiltState == TiltState.Tilted)
+            while (pouring)
             {
-                if (!Application.isPlaying) return;
-                if (!ReleaseMixture(amountPerInterval)) break;
-
-                await Task.Delay((int) (1000 * pourInterval));
+                await Task.Yield();
             }
+
+            pouring = true;
+            var seconds = 0f;
+
+            Action action = () => {
+                if(tiltDetection.tiltState != TiltState.Tilted)
+                {
+                    pouring = false;
+                    return;
+                }
+
+                waitTime = Mathf.Lerp(pourInterval * 10, pourInterval, tiltDetection.tiltLerpValue);
+
+                if(seconds < waitTime)
+                {
+                    seconds += Time.deltaTime;
+                    return;
+                }
+
+                seconds = 0f;
+
+
+
+
+                if (!ReleaseMixture(amountPerInterval))
+                {
+                    pouring = false;
+                    return;
+                }
+            };
+
+            BarTask.active.OnUpdate += action;
+
+            while (pouring) await Task.Yield();
+
+            BarTask.active.OnUpdate -= action;
+            pouring = false;
 
         }
 

@@ -8,7 +8,7 @@ namespace TheBartender
 {
     public enum UIManagerEvent
     {
-        OnToggle
+        OnToggleShowDrinks
     }
     public class UIManager : MonoBehaviour
     {
@@ -30,7 +30,7 @@ namespace TheBartender
             active = this;
         }
 
-        public Action AddListener<T>(UIManagerEvent eventType, Action action, T caller) where T: MonoBehaviour
+        public Action AddListener<T>(UIManagerEvent eventType, Action<UIManager> action, T caller) where T: MonoBehaviour
         {
             if (actionDictionary.ContainsKey(eventType))
             {
@@ -55,7 +55,7 @@ namespace TheBartender
                     return;
                 }
 
-                action();
+                action(manager);
             }
         }
 
@@ -74,6 +74,7 @@ namespace TheBartender
         public void ToggleToolTips()
         {
             showToolTips = !showToolTips;
+            InvokeEvent(UIManagerEvent.OnToggleShowDrinks);
         }
     }
 }
