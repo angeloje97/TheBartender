@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   behavior: {fileID: 0}
   audioManager: {fileID: 0}
-  outSound: {fileID: 8300000, guid: 8cc6c3ae1f4db8341b6c180d6f03a532, type: 3}
+  outSound: {fileID: 8300000, guid: 7369a2489cf7e134a9e00215a8d49002, type: 3}
   inSound: {fileID: 0}
 --- !u!82 &3838506439549459145
 AudioSource:

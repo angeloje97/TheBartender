@@ -148,6 +148,9 @@ namespace Architome
         {
             audioSources ??= new();
 
+            var randomPitchOffset = UnityEngine.Random.Range(1 -pitchRandomRange, 1 +pitchRandomRange);
+
+
             foreach (AudioSource source in audioSources)
             {
                 if (singleAudioSource)
@@ -169,6 +172,7 @@ namespace Architome
                     source.clip = clip;
                     source.loop = false;
                     source.volume = volume;
+                    source.pitch = randomPitchOffset;
                     source.Play();
                     //source.PlayOneShot(clip);
                     return source;
@@ -184,9 +188,8 @@ namespace Architome
 
             newAudioSource.volume = volume;
             newAudioSource.spatialBlend = spatialBlend;
-            var randomPitchOffset = UnityEngine.Random.Range(-pitchRandomRange, pitchRandomRange);
 
-            newAudioSource.pitch += randomPitchOffset;
+            newAudioSource.pitch = randomPitchOffset;
 
             audioSources.Add(newAudioSource);
 
