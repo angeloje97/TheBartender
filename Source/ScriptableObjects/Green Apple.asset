@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Green Apple
   m_EditorClassIdentifier: 
   name: Green Apple
-  liquidColor: {r: 0, g: 1, b: 0.047268867, a: 0.9019608}
+  liquidColor: {r: 0, g: 1, b: 0.047268867, a: 0.36862746}
   id: 4
   pourParticles: {fileID: 6987133548571522133, guid: f39aeb304e7970c4c93eefdafce466ee,
     type: 3}
   particlesPerPour: 1
+  pricePerUnit: 0

@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Rat Poison
   m_EditorClassIdentifier: 
   name: Smurf
-  liquidColor: {r: 0.0069344044, g: 1, b: 0, a: 0.9019608}
+  liquidColor: {r: 0.0069344044, g: 1, b: 0, a: 0.59607846}
   id: 6
   pourParticles: {fileID: 6987133548571522133, guid: f39aeb304e7970c4c93eefdafce466ee,
     type: 3}
   particlesPerPour: 1
+  pricePerUnit: 0

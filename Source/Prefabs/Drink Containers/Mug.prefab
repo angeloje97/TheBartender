@@ -82,6 +82,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2431735477586073609, guid: 41f7bd34d7a5d0b4ea771980466c1c1d,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2431735477586073611, guid: 41f7bd34d7a5d0b4ea771980466c1c1d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -95,12 +100,12 @@ PrefabInstance:
     - target: {fileID: 2431735477674620615, guid: 41f7bd34d7a5d0b4ea771980466c1c1d,
         type: 3}
       propertyPath: maxAmount
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2431735477674620615, guid: 41f7bd34d7a5d0b4ea771980466c1c1d,
         type: 3}
       propertyPath: amountPouredPerSecond
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2431735477674620639, guid: 41f7bd34d7a5d0b4ea771980466c1c1d,
         type: 3}

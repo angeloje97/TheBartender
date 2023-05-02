@@ -29,6 +29,7 @@ namespace TheBartender
 
         public float spread;
         public bool acceptsLiquid;
+        public bool sellable;
         public LiquidBehavior liquidBehavior;
 
         public Action OnUpdate;
@@ -72,7 +73,13 @@ namespace TheBartender
         }
 
         
-
+        public void EmptyDrink()
+        {
+            mixtures = new();
+            TotalAmount();
+            FinalColor(amount);
+            OnRemoveMixture?.Invoke(this);
+        }
         protected virtual async void HandleTiltStateChange(TiltState state)
         {
             if (state != TiltState.Tilted) return;

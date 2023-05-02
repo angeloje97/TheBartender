@@ -14,6 +14,7 @@ namespace TheBartender
         public int id;
         public GameObject pourParticles;
         public int particlesPerPour;
+        public float pricePerUnit;
 
         public bool Equals(Drink other)
         {

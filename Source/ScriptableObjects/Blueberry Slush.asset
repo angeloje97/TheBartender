@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Blueberry Slush
   m_EditorClassIdentifier: 
   name: Blueberry Slush
-  liquidColor: {r: 0, g: 0.04503846, b: 1, a: 0.9019608}
+  liquidColor: {r: 0, g: 0.04503846, b: 1, a: 0.58431375}
   id: 2
   pourParticles: {fileID: 6987133548571522133, guid: f39aeb304e7970c4c93eefdafce466ee,
     type: 3}
   particlesPerPour: 1
+  pricePerUnit: 0

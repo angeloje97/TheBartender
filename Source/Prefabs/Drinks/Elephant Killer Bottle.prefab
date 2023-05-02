@@ -231,6 +231,7 @@ MonoBehaviour:
   pourTransform: {fileID: 9028470185964125454}
   spread: 0.035
   acceptsLiquid: 0
+  sellable: 0
   liquidBehavior: {fileID: 860371993437999928, guid: f39aeb304e7970c4c93eefdafce466ee,
     type: 3}
   pouring: 0
@@ -250,7 +251,7 @@ MonoBehaviour:
   behavior: {fileID: 0}
   audioManager: {fileID: 0}
   outSound: {fileID: 8300000, guid: 7369a2489cf7e134a9e00215a8d49002, type: 3}
-  inSound: {fileID: 0}
+  inSound: {fileID: 8300000, guid: df3f7b5a013604f43aa2daebac06b8fd, type: 3}
 --- !u!82 &3838506439549459145
 AudioSource:
   m_ObjectHideFlags: 0

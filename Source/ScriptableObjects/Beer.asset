@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Beer
   m_EditorClassIdentifier: 
   name: Beer
-  liquidColor: {r: 1, g: 0.90713394, b: 0, a: 0.5019608}
+  liquidColor: {r: 1, g: 0.90713394, b: 0, a: 0.21960784}
   id: 1
   pourParticles: {fileID: 6987133548571522133, guid: f39aeb304e7970c4c93eefdafce466ee,
     type: 3}
   particlesPerPour: 1
+  pricePerUnit: 0

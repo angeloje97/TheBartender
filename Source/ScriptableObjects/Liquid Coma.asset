@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Liquid Coma
   m_EditorClassIdentifier: 
   name: Liquid Coma
-  liquidColor: {r: 0.6071256, g: 0.09211465, b: 0.8490566, a: 0.9019608}
+  liquidColor: {r: 0.6071256, g: 0.09211465, b: 0.8490566, a: 0.38431373}
   id: 5
   pourParticles: {fileID: 6987133548571522133, guid: f39aeb304e7970c4c93eefdafce466ee,
     type: 3}
   particlesPerPour: 1
+  pricePerUnit: 0

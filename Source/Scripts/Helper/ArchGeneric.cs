@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Threading.Tasks;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace Architome
 {
@@ -84,6 +85,24 @@ namespace Architome
             await Task.Delay((int)(1000 * seconds));
 
             action();
+        }
+
+        public static List<T> RandomSubset<T>(List<T> originalList, int subsetSize)
+        {
+            if(originalList.Count == 0)
+            {
+                return new List<T>();
+            }
+            var shuffledList = Shuffle(originalList);
+            var newList = new List<T>();
+
+            for(int i = 0; i < subsetSize; i++)
+            {
+                newList.Add(shuffledList[i % originalList.Count]);
+            }
+
+            return newList;
+
         }
 
 

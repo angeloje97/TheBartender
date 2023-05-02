@@ -100,6 +100,11 @@ PrefabInstance:
     - target: {fileID: 2431735477674620615, guid: 41f7bd34d7a5d0b4ea771980466c1c1d,
         type: 3}
       propertyPath: maxAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2431735477674620615, guid: 41f7bd34d7a5d0b4ea771980466c1c1d,
+        type: 3}
+      propertyPath: amountPouredPerSecond
       value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2431735477674620639, guid: 41f7bd34d7a5d0b4ea771980466c1c1d,
@@ -136,6 +141,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Shot Glass
+      objectReference: {fileID: 0}
+    - target: {fileID: 8053001849210067799, guid: 41f7bd34d7a5d0b4ea771980466c1c1d,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 41f7bd34d7a5d0b4ea771980466c1c1d, type: 3}

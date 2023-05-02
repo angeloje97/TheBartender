@@ -56,6 +56,7 @@ namespace TheBartender
             if (!worldCanvasSet) return;
             if (parentObject == null) return;
             if (mainCamera == null) return;
+            if (behavior == null) Destroy(gameObject);
 
             parentObject.LookAt(mainCamera.transform, Vector3.up);
             parentObject.transform.position = behavior.transform.position;
@@ -108,7 +109,14 @@ namespace TheBartender
         void UpdateText(DrinkBehavior behavior)
         {
             if (behavior == null) return;
-            text.text = MixtureString(behavior.mixtures);
+            var mixtureString = MixtureString(behavior.mixtures);
+            var fill = $"{Mathg.Round(behavior.amount, 2)}u/{(int) behavior.maxAmount}u";
+
+            text.text = ArchString.NextLineList(new() {
+                fill,
+                mixtureString
+            });
+
         }
 
         public string MixtureString(List<DrinkBehavior.Mixture> mixtureList)

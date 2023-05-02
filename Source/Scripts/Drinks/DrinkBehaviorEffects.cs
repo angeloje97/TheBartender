@@ -50,6 +50,7 @@ namespace TheBartender
 
         void HandleOutput(DrinkBehavior behavior)
         {
+            HandleInput(behavior);
             if (outSound == null) return;
             if (outDelay > 0) return;
             outDelay = .25f;
